@@ -2,11 +2,12 @@
 	
 	global $table_prefix;
 	parse_str( $argv[1], $config);
-	$config['dir'] = dirname(dirname(__FILE__)) . '/html/config/';
-	$config['export_dir'] = dirname(__FILE__);
 	
-	@include dirname(dirname(__FILE__)) . '/html/config/init.php';
+	$config['dir'] = dirname(__DIR__) . '/html/config/';
+	$config['export_dir'] = __DIR__;
+	
 	@include $config['dir'] . "{$config['config']}.php";
+	include dirname(__DIR__) . "/html/wp-config.php";
 	
 	if( ! defined('DB_USER') )
 	{
